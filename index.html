@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>TheFryStreet | Crispy food for every street mood in Lucknow</title>
+  <meta name="description" content="Crispy food for every street mood in Lucknow. Hot fries, bold sauces, loaded snacks and addictive street-style food.">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <meta property="og:title" content="TheFryStreet | Crispy food for every street mood in Lucknow">
+  <meta name="twitter:title" content="TheFryStreet | Crispy food for every street mood in Lucknow">
+  <style>
+    html,body{margin:0;min-height:100%;background:#080808}
+    #boot{min-height:100vh;display:grid;place-items:center;color:#f5ca18;font:700 18px Arial,sans-serif}
+  </style>
+</head>
+<body>
+  <div id="boot">Loading The Fry Street…</div>
+  <script>
+  (async function () {
+    const pageTitle = 'TheFryStreet | Crispy food for every street mood in Lucknow';
+    try {
+      let html = await fetch('./index.html.html', {cache:'no-store'}).then(function(r){
+        if(!r.ok) throw new Error('Unable to load website source');
+        return r.text();
+      });
+
+      html = html.replace(/^\s*```(?:html)?\s*/i, '').replace(/\s*```\s*$/i, '');
+      html = html.replace(/<title>[\s\S]*?<\/title>/i, '<title>' + pageTitle + '</title>');
+      html = html.replace(/<body\s+class=["']coming-soon-open["']>/i, '<body>');
+      html = html.replace(
+        /<head([^>]*)>/i,
+        '<head$1>' +
+        '<link rel="icon" href="./favicon.svg" type="image/svg+xml">' +
+        '<meta name="description" content="Crispy food for every street mood in Lucknow. Hot fries, bold sauces, loaded snacks and addictive street-style food.">' +
+        '<meta property="og:title" content="' + pageTitle + '">' +
+        '<meta name="twitter:title" content="' + pageTitle + '">' +
+        '<style>.coming-soon-popup{display:none!important}body.coming-soon-open{overflow:auto!important}</style>'
+      );
+
+      document.open();
+      document.write(html);
+      document.close();
+    } catch (err) {
+      document.getElementById('boot').textContent = 'Website could not be loaded.';
+      console.error(err);
+    }
+  })();
+  </script>
+</body>
+</html>
